@@ -7,16 +7,10 @@
       "rss": "https://billhunt.dev/feed.xml"
     },
     {
-      "name": "Zagaja.com",
-      "url": "https://www.zagaja.com/",
-      "author": "Matt Zagaja <mattz@codeforboston.org>",
-      "rss": "https://www.zagaja.com/feed.xml"
-    },
-    {
-      "name": "Hunter Owens",
-      "url": "https://hunterowens.net/",
-      "author": "Hunter Owens <hunter@hunterowens.net>",
-      "rss": "https://hunterowens.net/feed.xml"
+      "name": "Somebody",
+      "url": "https://www.example.com/",
+      "author": "Somebody <somebody@example.com>",
+      "rss": "https://www.example.com/feed.xml"
     }
   ]
 }

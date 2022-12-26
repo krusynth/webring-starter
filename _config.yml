@@ -31,7 +31,6 @@ repository: githubusername/webring-starter
 
 # END: You *can* customize the stuff below but you don't need to.
 
-
 theme: minima
 
 # Build settings
