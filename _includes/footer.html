@@ -1,0 +1,34 @@
+<footer class="site-footer h-card">
+  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <strong>Subscribe</strong>
+        <p>
+          There are a few ways to subscribe to updates from webring members with your RSS reader.
+        </p>
+        <p>
+          The easiest way is to <a href="{{ '/feeds.opml' | absolute_url }}">subscribe to this OPML file</a>. Rather than downloading this file, modern RSS readers <em>should</em> allow you to copy that url and subscribe to it (usually under a heading like "Import"), so when new members join they'll be added to your feed automatically.
+        </p>
+        <p>
+          Otherwise, you can also subscribe to our <a href="{{ '/feed.xml' | absolute_url}}">Atom feed directly</a>, but note that that only shows the latest 30 days of posts from members, and has a limit of 10 posts per member.
+        </p>
+
+        {%- if site.author and site.author.name != 'GitHub User' %}
+          <ul class="contact-list">
+            {% if site.author.name -%}
+              <li class="p-name">{{ site.author.name | escape }}</li>
+            {% endif -%}
+            {% if site.author.email -%}
+              <li><a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+            {%- endif %}
+          </ul>
+        {%- endif %}
+        </div>
+    </div>
+
+  </div>
+
+</footer>

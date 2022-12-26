@@ -1,0 +1,7 @@
+<ul class="members-list">
+  {%- for member in site.data.sites %}
+    <li>
+      <a href="{{ member.url }}">{{ member.name }}</a>
+    </li>
+  {%- endfor %}
+</ul>

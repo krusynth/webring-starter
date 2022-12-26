@@ -1,0 +1,27 @@
+---
+permalink: /foaf.rdf
+---
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:admin="http://webns.net/mvcb/">
+
+  <foaf:PersonalProfileDocument rdf:about="{{ site.url }}">
+    <foaf:maker rdf:resource="#me"/>
+    <foaf:primaryTopic rdf:resource="#me"/>
+    <admin:generatorAgent rdf:resource="https://github.com/{{ site.repository }}/blob/www/xml/foaf.rdf"/>
+  </foaf:PersonalProfileDocument>
+
+  <foaf:Group rdf:ID="me">
+    <foaf:name>{{ site.title }}</foaf:name>
+    {%- for member in site.data.sites %}
+      <foaf:member>
+        <foaf:Person rdf:ID="{{ member.name | slugify }}">
+          <foaf:name>{{ member.name }}</foaf:name>
+          <rdfs:seeAlso rdf:resource="{{ member.url }}"/>
+        </foaf:Person>
+      </foaf:member>
+    {% endfor %}
+  </foaf:Group>
+</rdf:RDF>

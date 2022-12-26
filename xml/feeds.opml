@@ -1,0 +1,14 @@
+---
+permalink: /feeds.opml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+    <title>{{ site.title }} Feeds</title>
+  </head>
+  <body>
+    {%- for member in site.data.sites %}
+      <outline text="{{ member.name }}" title="{{ member.name }}" type="rss" xmlUrl="{{ member.rss }}" htmlUrl="{{ member.url }}"/>
+    {%- endfor %}
+  </body>
+</opml>

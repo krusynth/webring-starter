@@ -1,0 +1,35 @@
+---
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="text" xml:lang="en">{{ site.title }} - Feed</title>
+  <link type="application/atom+xml" href="{{ '/feed.xml' | absolute_url }}" rel="self"/>
+  <link href="{{ site.url }}/"/>
+  <updated>{{ site.time | date: "%Y-%m-%dT%H:%M:%SZ" }}</updated>
+  <id>{{ site.url }}/</id>
+
+  {% for post in site.data.feed %}
+
+  {%- comment %} ### Only show posts in the last 30 days ### {% endcomment -%}
+  {%- assign thirtydays = 'now' | date: '%s' | minus: 2592000 -%}
+  {%- assign postdate = post.published | date: '%s' | minus: 0-%}
+  {%- if postdate > thirtydays -%}
+
+  <entry>
+    <title>{{ post.title | xml_escape }}</title>
+    <author>
+      <name>{{ post.site_name }}</name>
+      <uri>{{ post.site_url }}</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="{{ post.url }}" />
+    <published>{{ post.published | date_to_xmlschema }}</published>
+    <updated>{{ post.published | date_to_xmlschema }}</updated>
+    <id>{{ post.url }}</id>
+    <content type="html">
+      {{ post.content | xml_escape }}
+    </content>
+  </entry>
+  {% endif %}
+  {%- endfor %}
+</feed>

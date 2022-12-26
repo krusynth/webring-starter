@@ -1,0 +1,22 @@
+{
+  "sites": [
+    {
+      "name": "Bill Hunt",
+      "url": "https://billhunt.dev/",
+      "author": "Bill Hunt <hello@billhunt.email>",
+      "rss": "https://billhunt.dev/feed.xml"
+    },
+    {
+      "name": "Zagaja.com",
+      "url": "https://www.zagaja.com/",
+      "author": "Matt Zagaja <mattz@codeforboston.org>",
+      "rss": "https://www.zagaja.com/feed.xml"
+    },
+    {
+      "name": "Hunter Owens",
+      "url": "https://hunterowens.net/",
+      "author": "Hunter Owens <hunter@hunterowens.net>",
+      "rss": "https://hunterowens.net/feed.xml"
+    }
+  ]
+}

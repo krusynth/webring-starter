@@ -1,0 +1,23 @@
+<ul class="post-list">
+  {% assign last_date = 0 %}
+  {% for post in site.data.feed limit: 10 %}
+  {%- comment %}
+    ### Only show posts in the last 30 days ###
+  {% endcomment -%}
+  {%- assign thirtydays = 'now' | date: '%s' | minus: 2592000 -%}
+  {%- assign postdate = post.published | date: '%s' | minus: 0-%}
+    {%- if postdate > thirtydays -%}
+      <li>
+        <span class="post-meta">{{ post.published | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url }}">
+            {{ post.site_name }} – {{ post.title }}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ post.content | replace: "</p><p>", "  " | strip_html | truncatewords: 50 }}
+        {%- endif -%}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
