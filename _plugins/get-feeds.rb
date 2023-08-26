@@ -17,6 +17,7 @@ module Jekyll
       site.data['feed'] = Array.new
 
       site.data['sites'].map! { |entry|
+        puts entry['name']
 
         ### TODO: Enable FOAF checks
         if !entry['rss'] #|| !entry['foaf']
@@ -35,9 +36,14 @@ module Jekyll
           entry['feed'] = get_feed(entry['rss'], entry)
 
           if entry['feed']
+            puts "Found #{entry['feed'].size()} entries"
             site.data['feed'] += entry['feed']
+          else
+            puts 'No feed found'
           end
         end
+
+        puts
 
         entry
       }
@@ -56,23 +62,30 @@ module Jekyll
 
     def get_document(url)
       html = Net::HTTP.get(URI(url))
+      html = html.encode('iso-8859-1', :invalid => :replace, :undef => :replace, :replace => '')
+                 .encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '')
       document = Oga.parse_html(html)
     end
 
     def find_feed(document)
+      puts 'Searching homepage for RSS feed url'
+
       # Look for a RSS feed first
       link = document.at_xpath('//link[@rel="alternate" and @type="application/rss+xml"]')
 
       if link
-        # puts 'Found RSS ' + link['href']
+        puts 'Found RSS ' + link['href']
         return link['href']
       end
 
       # An Atom feed is just as good
       link = document.at_xpath('//link[@rel="alternate" and @type="application/atom+xml"]')
+      puts link.inspect
       if link
-        # puts 'Found Atom ' + link['href']
+        puts 'Found Atom ' + link['href']
         return link['href']
+      else
+        puts 'No feed found'
       end
 
     end
@@ -116,6 +129,8 @@ module Jekyll
               .encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '')
           else
             result['content'] = ''
+            puts entry.title
+            puts 'No content'
           end
         rescue
           puts 'Error parsing ' + site['name'] + ' - ' + entry.title
